@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div></div>
+            <ul><a href="#nav">home</a></ul>
+            <ul><a href="#about">about</a></ul>
+            <ul><a href="#skills">skills</a></ul>
+            <ul><a href="#contact">contact</a></ul>
+        </div>
+    </header>
+    <section>
+        <div class="first_page">
+            <div class="text">
+                <h1>Welcome to <span>my portfolio</span></h1>
+            </div>
+            <a href="#about">
+            <button class="btn">
+                Discover more
+            </button>
+            </a>
+        </div>
+    </section>
+    <section class="about" id="about">
+        <div class="right_side">
+            <div class="title">
+                <h1>Hello I'm <span>Mabrouk</span></h1>
+            </div>
+            <div class="information">
+                <h3>Full name : <span>Mabrouk Logbibi</span></h3>
+                <h3>University : <span>Badji mokhtar annaba</span></h3>
+                <h3>Speciality : <span>First year computer science + automation</span></h3>
+                <h3>Address : <span>Sidi amar - Annaba</span></h3>
+                <h3>Email : <span>logbibimabrouk@gmail.com</span></h3>
+                <h3>Freelancer : <span>Available</span></h3>
+            </div>
+        </div>
+        <div class="left_side">
+            <img class="img" src="{% static 'img/a.jpg' %}" alt="" width="400px">
+        </div>
+    </section>
+    
+    <section class="skills" id="skills">
+        <h1>my skills</h1>
+        <div class="cards">
+            {% for skill in skills %}
+                <div class="skill">
+                    <h4>{{ skill.name }}</h4>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ skill.percentage }}%;">
+                            {{ skill.percentage }}%
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <div class="left">
+            <h1>contact me</h1>
+            <div class="btns">
+                <div class="btne">
+                    <div class="icons">
+                        <a href="https://www.linkedin.com/in/mabrouk-logbibi-0651b026a/" target="_blank"><img src="{% static 'img/linkedin.png' %}" alt="" width="50px" height="50px"></a>
+                    </div>
+                </div>
+                <div class="btne">
+                    <div class="icons">
+                        <a href="https://github.com/Islamlogbibi" target="_blank"><img src="{% static 'img/github (1).png' %}" alt="" width="50px" height="50px"></a>
+                    </div>
+                </div>
+                <div class="btne">
+                    <div class="icons">
+                        <a href="https://web.facebook.com/profile.php?id=100087966191563&locale=ar_AR" target="_blank"><img src="{% static 'img/facebook.png' %}" alt="" width="50px" height="50px"></a>
+                    </div>
+                </div>
+                <div class="btne">
+                    <div class="icons">
+                        <a href="https://www.instagram.com/islam____pi?igsh=aWF2c2VkdHoybGMx" target="_blank"><img src="{% static 'img/instagram.png' %}" alt="" width="50px" height="50px"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="email" placeholder="email@example.com" name="email">
+                <textarea name="text" id="" cols="30" rows="10" placeholder="write your messege"></textarea>
+                <input type="submit" value="save" class="button">
+            </form>
+        </div>
+        
+    </section>
+</body>
+</html>
